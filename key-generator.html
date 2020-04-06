@@ -1,0 +1,128 @@
+<html>
+  <head>
+    <script src="jsrsasign-8.0.13/jsrsasign-all-min.js"></script>
+    <script src="vue.min.js"></script>
+    <script src="download.min.js"></script>
+    <meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'unsafe-inline'" />
+    <style>
+      body {
+        font-family: sans-serif;
+        font-size: 16px;
+      }
+      textarea {
+        display: block;
+        width: 100%;
+        height: 80px;
+      }
+
+      button {
+        font-size: 20px;
+        font-weight: bold;
+        padding: 15px;
+      }
+
+      #app div {
+        margin-top: 1em;
+      }
+
+      #app div input {
+        width: 300px;
+        font-size: 16px;
+        padding: 4px;
+      }
+      
+    </style>
+  </head>
+<body>
+<div id="app">
+  <!-- <textarea :value="output.private_key"></textarea>
+  <textarea :value="output.public_key"></textarea> -->
+
+  <h1>Step 1: Fill in these details</h1>
+
+  <div>
+    <label>
+      Your name
+      <input type="text" v-model="values.cn" :placeholder="placeholders.cn">
+    </label>
+  </div>
+  
+  <div>
+    <label>
+      Domain
+      <input type="text" v-model="values.domain" :placeholder="placeholders.domain">
+    </label>
+  </div>
+
+  <div>
+    <label>
+      Country
+      <input type="text" v-model="values.country" :placeholder="placeholders.country">
+    </label>
+  </div>
+
+  <div>
+    <label>
+      Province
+      <input type="text" v-model="values.province" :placeholder="placeholders.province">
+    </label>
+  </div>
+
+  <div>
+    <label>
+      City
+      <input type="text" v-model="values.city" :placeholder="placeholders.city">
+    </label>
+  </div>
+  
+  <div>
+    <label>
+      Organization
+      <input type="text" v-model="values.organization" :placeholder="placeholders.organization">
+    </label>
+  </div>
+  
+  <div>
+    <label>
+      Department
+      <input type="text" v-model="values.ou" :placeholder="placeholders.ou">
+    </label>
+  </div>
+  
+  <div>
+    <label>
+      Email
+      <input type="text" v-model="values.email" :placeholder="placeholders.email">
+    </label>
+  </div>
+  
+  <h1>Step 2: Generate a CSR, copy and send over</h1>
+
+  <button type="button" @click="makeCSR()">Make CSR</button>
+
+  <h1>Step 3: Copy and send CSR over <a href="https://web.whatsapp.com" target="_blank">Whatsapp</a></h1>
+
+  <div>
+    <label>
+      <textarea :value="output.csr"></textarea>
+    </label>
+  </div>
+
+  <h1>Step 4: Download the certificate, <code>ca.crt</code> and <code>client.ovpn</code> (from Whatsapp)</h1>
+
+  Save these files in <code>C:\Program Files\OpenVPN\config\</code>.
+
+  <h1>Step 5: Download the private key</h1>
+
+  Save it as <code>C:\Program Files\OpenVPN\config\client.key</code>.
+
+  <div>
+    <button type="button" @click="downloadPrivateKey()" :disabled="!output.private_key">
+      Download client.key
+    </button>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

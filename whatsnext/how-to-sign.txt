@@ -1,0 +1,1 @@
+openssl x509 -in csr -inform pem -req -signkey ./example-pkey -sha256 -days 1850 > cert
