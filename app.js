@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.output.csr = pem
       },
       downloadPrivateKey() {
-        download(this.values.private_key, "client.key", "application/octet-stream")
+        download(this.output.private_key, "client.key", "application/octet-stream")
       },
     }
   })
